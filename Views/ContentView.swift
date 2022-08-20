@@ -99,7 +99,7 @@ struct ContentView: View {
     //MARK: Function used for computer, it's gonna be huge -_-
     //Computer moves only has, pick more card or stop picking, only the user can deal the card
     private func pickMoreCard(){
-        addCard(to: hand.type == "computer");
+        
     }
     
     private func stopPicking(){
