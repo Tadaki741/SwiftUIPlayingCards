@@ -169,6 +169,9 @@ class Hand: ObservableObject, Identifiable {
                 //We need to check if the cards including the Ace in there
                 bestCardPointPossible += valueDictionary[card.number] ?? 0;
             }
+            if(bestCardPointPossible > 21){
+                return "Quach";
+            }
         }
         return String(bestCardPointPossible);
     }

@@ -18,15 +18,13 @@ struct ContentView: View {
     //User deal and computer deal will end the match
     @State private var computerDeal: Bool = false;
     @State private var userDeal:Bool = false;
-    
-    
-    @State private var computerTurn: Bool = false;
-    @State private var userTurn: Bool = false;
+
     
     
     @State private var userQuitMatch: Bool = false;
     @State private var userPoint: String = "0";
     @State private var computerPoint: String = "0";
+    @State private var bothSideDeal: Bool = false;
     
     var body: some View {
         
@@ -64,14 +62,15 @@ struct ContentView: View {
                             if(hand.type == "user"){
                                 Text("User point: \(userPoint)")
                                 Button("Pick more"){
-                                    //User will pick
-                                    addCard(to: hand)
-                                    //Computer will pick the next card
-                                    addCard(to: gameState.hands[0])
-                                    //Update the user's point
-                                    userPoint = gameState.hands[1].calculateTotalPointOfCards()
-                                    //Update computer's point
-                                    computerPoint = gameState.hands[0].calculateTotalPointOfCards()
+                                    //Action from user
+                                    UserPickDecisionPickMore();
+                                    
+                                    //Then, its turn for computer to move
+                                    AIPickDecision();
+                                    
+                                    summarizeGameState();
+                                    
+                                    
                                 }.frame(width: 90, height: 40)
                                     .background(roundRect.fill(Color.orange))
                                     .overlay(roundRect.stroke())
@@ -80,7 +79,10 @@ struct ContentView: View {
                                 
                                 
                                 Button("Deal"){
-                                    userDealCard()
+                                    userDealCard();
+                                    summarizeGameState();
+                                    
+                                    
                                 }.frame(width: 90, height: 40)
                                     .background(roundRect.fill(Color.orange))
                                     .overlay(roundRect.stroke())
@@ -127,7 +129,7 @@ struct ContentView: View {
         }
     }
     
-    //This function is no longer in use, but i want to keep it
+    //This function has no usage but i wanna keep it
     private func remove(card: Card, from hand: Hand) {
         withAnimation {
             // Put the card back in the deck
@@ -150,27 +152,91 @@ struct ContentView: View {
         }
         else if(userDeal == true && computerDeal == true){
             //End the match, find the winner
+            bothSideDeal = true;
+            if(bothSideDeal){
+                evaluateWinner();
+                bothSideDeal = false;
+            }
         }
-        //Now we will calculate the user's points and then compare it with the computer's point
-        
-        //If the user's point is higher than the computer then the user will win the match
-        
-        //We will keep gambling until we ran out of money
+        print("user deal ended");
     }
     
     //MARK: Function used for computer, Computer moves including, pick more, stop picking , deal
     public func AIPickDecision(){
+        
         func pickMoreCard(){
-            
+            //Computer will pick the next card
+            addCard(to: gameState.hands[0])
+            //Update computer's point
+            computerPoint = gameState.hands[0].calculateTotalPointOfCards()
         }
         
         func stopPicking(){
-            
+            return;
         }
         
         func deal () {
-            
+            computerDeal = true;
+            if(userDeal && computerDeal){
+                bothSideDeal = true;
+                if(bothSideDeal){
+                    evaluateWinner();
+                    bothSideDeal = false;
+                }
+            }
+            else {
+                return;
+            }
         }
+        
+        
+        //MARK: AI LOGIC
+        //Here the AI will check for the value of its card, we just make a simple rule, the AI will aim to score between 15 and 21
+        //If the AI card hits special strong case, or Quach case, it has to deal immediately
+        if(computerPoint == "Xi Dach" || computerPoint == "Xi Ban" || computerPoint == "Quach"){
+            deal();
+            return;
+        }
+        //else it will keep picking
+        else{
+            //until it hits the range 15...21 or try to get Ngu Linh
+            let AIcardCounter: Int = gameState.hands[0].cards.count;
+            let AIcardPointToInt: Int = Int(computerPoint) ?? 0;
+            //Ngu Linh case
+            if(AIcardCounter == 5 && AIcardPointToInt <= 21){
+                deal();
+                computerPoint = "Ngu Linh"
+            }
+            
+            else if(AIcardPointToInt >= 15 && AIcardPointToInt <= 21) {
+                deal();
+            }
+            
+            else {
+                pickMoreCard();
+            }
+        }
+        
+        
+    }
+    
+    public func summarizeGameState(){
+        print("user deal state: \(userDeal)")
+        print("computer deal state: \(computerDeal)")
+        print("user card point: \(userPoint)")
+        print("user computer point: \(computerPoint)")
+        print("-------------------------------------")
+    }
+    
+    public func UserPickDecisionPickMore(){
+        //User will pick
+        addCard(to: gameState.hands[1])
+        //Update the user's point
+        userPoint = gameState.hands[1].calculateTotalPointOfCards()
+    }
+    
+    public func evaluateWinner(){
+        
     }
    
     
