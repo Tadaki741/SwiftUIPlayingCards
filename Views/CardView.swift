@@ -22,7 +22,7 @@ struct CardView: View {
                              style: .continuous)
                 .stroke(.black, lineWidth: 2)
                 
-            Image(String(card.number)).resizable().frame(width: 80, height: 90)
+            Image(String(card.number)).resizable().frame(width: 80, height: 100)
         }
         .frame(width: 60, height: 80)
         .matchedGeometryEffect(id: "\(card.number)",

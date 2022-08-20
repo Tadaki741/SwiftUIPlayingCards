@@ -24,6 +24,7 @@ struct Card: Identifiable, Equatable {
 class Hand: ObservableObject, Identifiable {
     
     //Dictionary for the system to calculate point, calculate the total cards value the user and computer are holding
+    //Left side are the index of the card, right side is their according value
     private var valueDictionary:[Int:Int] = [
     
         0 : 10, // Ace
@@ -82,6 +83,10 @@ class Hand: ObservableObject, Identifiable {
         
     ]
     
+    //These are for convenience when checking card conditions
+    private var JackQueenKingCardContainer: [Int] = [10,11,12,23,24,25,36,37,38,49,50,51]
+    private var AceLocationContainer: [Int] = [0,13,26,39]
+    
     let id = UUID()
     //Contains all cards in hands as array
     @Published var cards = [Card]()
@@ -90,23 +95,86 @@ class Hand: ObservableObject, Identifiable {
     
     //function to print out all cards available in hand
     public func getHandTotalCard(){
-        print("[",terminator: "")
+        print("[ ",terminator: "")
         for card in cards {
             print(card.number,terminator: " ")
         }
         print("]",terminator: "")
     }
     
-    //function to calculate all points available for the cards, we will need a dictionary for this
-    public func calculateTotalPointOfCards() -> Int{
-        var cardPoint = 0;
-        //Loop through the array of cards
+    //Function to check if the cards in hand contain an Ace
+    public func containsAce() -> Bool{
         for card in cards {
-            cardPoint += valueDictionary[card.number] ?? 0;
+            //These numbers are the location of Ace card inside the dictionary
+            if(card.number == 0 || card.number == 13 || card.number == 26 || card.number == 39){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    //function to calculate all points available for the cards, we will need a dictionary for this
+    public func calculateTotalPointOfCards() -> String{
+        //Here we need to calculate the best possible value, the Ace can be 1,11 or 10, based on the number of our cards available
+        var bestCardPointPossible = 0;
+        let hasAce = containsAce();
+        //We need to divide into 2 different situation, one with the Ace and one without the Ace
+        //Initial stage when just enter the game, we have 2 cards
+        //Base case, strongest case
+        if(self.cards.count == 2){
+            //CASE 1: If there is a presense of double Ace, they automatically win that round
+            if(hasAce){
+                //Double ace
+                if(AceLocationContainer.contains(cards[0].number) && AceLocationContainer.contains(cards[1].number)){
+                    return "Xi Dach"
+                }
+                //CASE 2: Xi Ban Case, One Ace and One J/K/Q/10
+                else if( (AceLocationContainer.contains(cards[0].number) && JackQueenKingCardContainer.contains(cards[1].number)) || (AceLocationContainer.contains(cards[1].number) && JackQueenKingCardContainer.contains(cards[0].number))) {
+                    return "Xi Ban"
+                }
+                else {
+                    //If we have no Ace, we just loop through the beginning till the end and calculate sum with no condition
+                    //Loop through the array of cards
+                    for card in cards {
+                        //We need to check if the cards including the Ace in there
+                        bestCardPointPossible += valueDictionary[card.number] ?? 0;
+                    }
+                }
+            }
+            
+            
+            else {
+                //If we have no Ace, we just loop through the beginning till the end and calculate sum with no condition
+                //Loop through the array of cards
+                for card in cards {
+                    //We need to check if the cards including the Ace in there
+                    bestCardPointPossible += valueDictionary[card.number] ?? 0;
+                }
+                return String(bestCardPointPossible);
+            }
         }
         
-        return cardPoint;
+        else{
+            //We assume Ace == 10
+            
+            //We assume Ace == 11
+            
+            //We assume Ace == 1
+            
+            //Calculate the best result of all 3
+            
+            //Then return the best result
+            for card in cards {
+                //We need to check if the cards including the Ace in there
+                bestCardPointPossible += valueDictionary[card.number] ?? 0;
+            }
+        }
+        return String(bestCardPointPossible);
     }
+    
+    
+    
 }
 
 // A representation of the current state of the game,

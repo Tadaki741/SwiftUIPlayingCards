@@ -186,8 +186,7 @@ struct cardDealTest: View {
                     
                     
                 }
-            }
-            .ignoresSafeArea()
+            }.ignoresSafeArea()
             
         }
         
