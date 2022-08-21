@@ -179,11 +179,17 @@ class Hand: ObservableObject, Identifiable {
                         return "Ngu Linh";
                     }
                 }
-                
+                //If the number of cards smaller than 5, like 4 for example, and if it has ace, the value will still be count as 1
                 //Otherwise, we just need to calculate the normal sum, and the Ace will have the value of 10
                 else {
                     for card in cards{
-                        bestCardPointPossible += valueDictionary[card.number] ?? 0;
+                        //If we found an Ace, we will plus 1 only
+                        if(AceLocationContainer.contains(card.number)){
+                            bestCardPointPossible += 1;
+                        }
+                        else {
+                            bestCardPointPossible += valueDictionary[card.number] ?? 0;
+                        }
                     }
                     //Check again after calculating
                     if(bestCardPointPossible > 21){

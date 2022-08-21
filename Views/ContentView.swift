@@ -55,8 +55,14 @@ struct ContentView: View {
                         VStack{
                             
                             HStack {
-
-                                HandView(hand: hand,namespace: animation)
+                                if(hand.type == "computer"){
+                                    //Use ternary operator to identify when the match will end, then we will unveil the computer cards
+                                    HandView(hand: hand,namespace: animation).blur(radius: bothSideDeal ? 0 : 20, opaque: true);
+                                }
+                                else if(hand.type == "user") {
+                                    HandView(hand: hand,namespace: animation)
+                                }
+                                
                                 
                             }.padding()
                             
@@ -94,7 +100,7 @@ struct ContentView: View {
                                 
                             }
                             else if(hand.type == "computer"){
-                                Text("Computer point: \(computerPoint)")
+                                Text("Computer point: \(computerPoint)").blur(radius: bothSideDeal ? 0 : 20, opaque: true)
                             }
                             
                         }
@@ -155,18 +161,13 @@ struct ContentView: View {
         else if(userDeal == true && computerDeal == true){
             //End the match, find the winner
             bothSideDeal = true;
-            if(bothSideDeal){
-                evaluateWinner();
-                bothSideDeal = false;
-            }
         }
-        print("user deal ended");
     }
     
     //MARK: Function used for computer, Computer moves including, pick more, stop picking , deal
     public func AIPickDecision(){
         
-        //----------------------Inner functions ----------------
+        //----------------------AI MOVES ----------------
         func pickMoreCard(){
             //Computer will pick the next card
             addCard(to: gameState.hands[0])
@@ -182,22 +183,19 @@ struct ContentView: View {
             computerDeal = true;
             if(userDeal && computerDeal){
                 bothSideDeal = true;
-                if(bothSideDeal){
-                    evaluateWinner();
-                    bothSideDeal = false;
-                }
             }
             else {
                 return;
             }
         }
-        //----------------------Inner function--------------------
+        //----------------------AI MOVES--------------------
         
         
         //MARK: AI LOGIC
         //Here the AI will check for the value of its card, we just make a simple rule, the AI will aim to score between 15 and 21
         //If the AI card hits special strong case, or Quach case, it has to deal immediately
         if(computerPoint == "Xi Dach" || computerPoint == "Xi Ban" || computerPoint == "Quach"){
+            //Make a move
             deal();
             return;
         }
@@ -208,17 +206,20 @@ struct ContentView: View {
             let AIcardPointToInt: Int = Int(computerPoint) ?? 0;
             //Ngu Linh case
             if(AIcardCounter == 5 && AIcardPointToInt <= 21){
+                //Make a move
                 deal();
                 computerPoint = "Ngu Linh"
                 return;
             }
             
             else if(AIcardPointToInt >= 15 && AIcardPointToInt <= 21) {
+                //Make a move
                 deal();
                 return;
             }
             
             else {
+                //Make a move
                 pickMoreCard();
                 return;
             }
@@ -230,6 +231,7 @@ struct ContentView: View {
     public func summarizeGameState(){
         print("user deal state: \(userDeal)")
         print("computer deal state: \(computerDeal)")
+        print("both side deal status: \(bothSideDeal)")
         print("user card point: \(userPoint)")
         print("user computer point: \(computerPoint)")
         print("-------------------------------------")
@@ -242,8 +244,10 @@ struct ContentView: View {
         userPoint = gameState.hands[1].calculateTotalPointOfCards()
     }
     
+    //MARK: Find out who is the winner
     public func evaluateWinner(){
         print("Into function evaluate winner")
+        //Inside the evaluate winner, we will unveil the cards of the computer for the user to see
         
         //Divide the situation of the user and the winner
         
