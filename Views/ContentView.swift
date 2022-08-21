@@ -23,7 +23,9 @@ struct ContentView: View {
     
     @State private var userQuitMatch: Bool = false;
     @State private var userPoint: String = "0";
+    @State private var userMoney: String = "0";
     @State private var computerPoint: String = "0";
+    @State private var computerMoney: String = "0";
     @State private var bothSideDeal: Bool = false;
     
     var body: some View {
@@ -34,7 +36,7 @@ struct ContentView: View {
                 Color.yellow
                 Color.purple
             }.onAppear(){
-                //Calculate user's point and computer point
+                //Calculate user's point and computer point before hand
                 userPoint = gameState.hands[1].calculateTotalPointOfCards();
                 computerPoint = gameState.hands[0].calculateTotalPointOfCards();
             }
@@ -43,7 +45,7 @@ struct ContentView: View {
                 VStack {
                     Spacer();
                     //MARK: Master Deck on the top
-                    DeckView(deck: gameState.deck,namespace: animation)
+                    DeckView(deck: gameState.deck,namespace: animation).blur(radius: 20, opaque: true)
                     Spacer();
                     
                     //MARK: Computer side is in the middle, User side is on the bottom
@@ -116,7 +118,7 @@ struct ContentView: View {
         
     }
     
-    //MARK: Game main function
+    //MARK: Game main functions
     private func addCard(to hand: Hand) {
         withAnimation {
             guard let card = gameState.deck.cards.popLast() else {
@@ -164,6 +166,7 @@ struct ContentView: View {
     //MARK: Function used for computer, Computer moves including, pick more, stop picking , deal
     public func AIPickDecision(){
         
+        //----------------------Inner functions ----------------
         func pickMoreCard(){
             //Computer will pick the next card
             addCard(to: gameState.hands[0])
@@ -188,6 +191,7 @@ struct ContentView: View {
                 return;
             }
         }
+        //----------------------Inner function--------------------
         
         
         //MARK: AI LOGIC
@@ -206,14 +210,17 @@ struct ContentView: View {
             if(AIcardCounter == 5 && AIcardPointToInt <= 21){
                 deal();
                 computerPoint = "Ngu Linh"
+                return;
             }
             
             else if(AIcardPointToInt >= 15 && AIcardPointToInt <= 21) {
                 deal();
+                return;
             }
             
             else {
                 pickMoreCard();
+                return;
             }
         }
         
@@ -236,7 +243,11 @@ struct ContentView: View {
     }
     
     public func evaluateWinner(){
+        print("Into function evaluate winner")
         
+        //Divide the situation of the user and the winner
+        
+        //If the user and computer both got Double
     }
    
     

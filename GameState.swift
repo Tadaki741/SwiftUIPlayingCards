@@ -127,11 +127,11 @@ class Hand: ObservableObject, Identifiable {
             if(hasAce){
                 //Double ace
                 if(AceLocationContainer.contains(cards[0].number) && AceLocationContainer.contains(cards[1].number)){
-                    return "Xi Dach"
+                    return "Xi Ban"
                 }
                 //CASE 2: Xi Ban Case, One Ace and One J/K/Q/10
                 else if( (AceLocationContainer.contains(cards[0].number) && JackQueenKingCardContainer.contains(cards[1].number)) || (AceLocationContainer.contains(cards[1].number) && JackQueenKingCardContainer.contains(cards[0].number))) {
-                    return "Xi Ban"
+                    return "Xi Dach"
                 }
                 else {
                     //If we have no Ace, we just loop through the beginning till the end and calculate sum with no condition
@@ -156,22 +156,53 @@ class Hand: ObservableObject, Identifiable {
         }
         
         else{
-            //We assume Ace == 10
             
-            //We assume Ace == 11
-            
-            //We assume Ace == 1
-            
-            //Calculate the best result of all 3
-            
-            //Then return the best result
-            for card in cards {
-                //We need to check if the cards including the Ace in there
-                bestCardPointPossible += valueDictionary[card.number] ?? 0;
+            //If the cards quantity is larger than 2, we need to identify Ngu Linh case, then the Ace value will be 1 only
+            if(hasAce){
+                
+                //If the cards quantity is equals to 5 and it has Ace in there, we will calculate for Ngu Linh
+                if(self.cards.count == 5){
+                    for card in cards {
+                        //If we found an Ace, we will plus 1 only
+                        if(AceLocationContainer.contains(card.number)){
+                            bestCardPointPossible += 1;
+                        }
+                        else {
+                            bestCardPointPossible += valueDictionary[card.number] ?? 0;
+                        }
+                    }
+                    //Check again after calculating
+                    if(bestCardPointPossible > 21){
+                        return "Quach";
+                    }
+                    else if(bestCardPointPossible <= 21){
+                        return "Ngu Linh";
+                    }
+                }
+                
+                //Otherwise, we just need to calculate the normal sum, and the Ace will have the value of 10
+                else {
+                    for card in cards{
+                        bestCardPointPossible += valueDictionary[card.number] ?? 0;
+                    }
+                    //Check again after calculating
+                    if(bestCardPointPossible > 21){
+                        return "Quach";
+                    }
+                }
             }
-            if(bestCardPointPossible > 21){
-                return "Quach";
+            
+            //If we do not have an Ace, we just need to loop through all cards and calculate sum
+            else {
+                for card in cards {
+                    bestCardPointPossible += valueDictionary[card.number] ?? 0;
+                }
+                if(bestCardPointPossible > 21){
+                    return "Quach";
+                }
             }
+            
+            
         }
         return String(bestCardPointPossible);
     }
