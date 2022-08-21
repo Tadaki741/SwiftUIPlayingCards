@@ -20,7 +20,7 @@
 
 import SwiftUI
 
-struct cardDealTest: View {
+struct sandBoxArea: View {
     private let roundRect = RoundedRectangle(cornerRadius: 20)
         @State private var flag: Bool = false;
         
@@ -227,8 +227,8 @@ struct cardDealTest: View {
         
 }
 
-struct cardDealTest_Previews: PreviewProvider {
+struct sandBoxArea_Previews: PreviewProvider {
     static var previews: some View {
-        cardDealTest()
+        sandBoxArea()
     }
 }
