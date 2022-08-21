@@ -68,7 +68,7 @@ struct ContentView: View {
                             
                             //Options for the user
                             if(hand.type == "user"){
-                                Text("User point: \(userPoint)")
+                                Text("User point: \(userPoint)").font(.system(size: 30, weight: .heavy, design: .default))
                                 Button("Pick more"){
                                     //Action from user
                                     UserPickDecisionPickMore();
@@ -100,7 +100,7 @@ struct ContentView: View {
                                 
                             }
                             else if(hand.type == "computer"){
-                                Text("Computer point: \(computerPoint)").blur(radius: bothSideDeal ? 0 : 20, opaque: true)
+                                Text("Computer point: \(computerPoint)").blur(radius: bothSideDeal ? 0 : 20, opaque: true).font(.system(size: 30, weight: .heavy, design: .default))
                             }
                             
                         }
@@ -133,7 +133,6 @@ struct ContentView: View {
             }
             
             hand.cards.append(card)
-            hand.getHandTotalCard()
         }
     }
     
@@ -161,6 +160,7 @@ struct ContentView: View {
         else if(userDeal == true && computerDeal == true){
             //End the match, find the winner
             bothSideDeal = true;
+            evaluateWinner();
         }
     }
     
@@ -246,12 +246,29 @@ struct ContentView: View {
     
     //MARK: Find out who is the winner
     public func evaluateWinner(){
-        print("Into function evaluate winner")
-        //Inside the evaluate winner, we will unveil the cards of the computer for the user to see
         
-        //Divide the situation of the user and the winner
+        //Get the point for the user and the computer, these are using for comparison, we will convert string case to number too
+//        var userPointNumber: Int = 0;
+//        var computerPointNumber: Int = 0;
         
-        //If the user and computer both got Double
+        //3 cases, with string - string
+        
+        // string - number
+        
+        // number - number
+        
+    }
+    
+    private func checkNumeric(input: String) -> Bool {
+        for (_, char) in input.enumerated() {
+            if(char.isNumber){
+                continue;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
     }
    
     

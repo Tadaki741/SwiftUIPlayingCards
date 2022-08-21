@@ -93,15 +93,6 @@ class Hand: ObservableObject, Identifiable {
     //To know is this a user hand or a computer hand
     var type = "";
     
-    //function to print out all cards available in hand
-    public func getHandTotalCard(){
-        print("[ ",terminator: "")
-        for card in cards {
-            print(card.number,terminator: " ")
-        }
-        print("]",terminator: "")
-    }
-    
     //Function to check if the cards in hand contain an Ace
     public func containsAce() -> Bool{
         for card in cards {
