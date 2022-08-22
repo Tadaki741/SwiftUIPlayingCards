@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    private var gameState = GameState()
+    @State private var gameState = GameState()
     private let roundRect = RoundedRectangle(cornerRadius: 20)
     @Namespace private var animation
     
@@ -18,14 +18,16 @@ struct ContentView: View {
     //User deal and computer deal will end the match
     @State private var computerDeal: Bool = false;
     @State private var userDeal:Bool = false;
+    @State private var hasWinningPerson: Bool = false;
+    @State private var winningPerson: String = "";
 
-    
     
     @State private var userQuitMatch: Bool = false;
     @State private var userPoint: String = "0";
-    @State private var userMoney: String = "0";
+    @State private var userWinningCount = 0;
+    @State private var computerWinningCount = 0;
     @State private var computerPoint: String = "0";
-    @State private var computerMoney: String = "0";
+    @State private var computerMoney: Int = 0;
     @State private var bothSideDeal: Bool = false;
     
     var body: some View {
@@ -44,7 +46,7 @@ struct ContentView: View {
             ZStack{
                 VStack {
                     Spacer();
-                    //MARK: Master Deck on the top
+                    //MARK: Master card deck on the top
                     DeckView(deck: gameState.deck,namespace: animation).blur(radius: 20, opaque: true)
                     Spacer();
                     
@@ -116,6 +118,40 @@ struct ContentView: View {
                     }
                     Spacer();
                     
+                    //Display winner
+                    if(bothSideDeal && hasWinningPerson){
+                        withAnimation {
+                            Button("See result") {}
+                            .sheet(isPresented: $hasWinningPerson, content: {
+                                
+                                VStack{
+                                    Text("\(winningPerson) WIN !")
+                                    HStack{
+                                        
+                                        Button("Play again ?"){
+                                            //Reset game
+                                            resetGame();
+                                            
+                                        }
+                                        
+                                        Button("Quit match"){
+                                            //Save the data
+                                            
+                                            //Relocate user to homescreen
+                                            
+                                        }
+                                    }
+                                }
+                                
+                                
+                    
+                                
+                            })
+                        }
+                        
+                    }
+                    Spacer();
+                    
                 }
             }
             
@@ -125,6 +161,7 @@ struct ContentView: View {
     }
     
     //MARK: Game main functions
+    //MARK: Add cards
     private func addCard(to hand: Hand) {
         withAnimation {
             guard let card = gameState.deck.cards.popLast() else {
@@ -136,7 +173,7 @@ struct ContentView: View {
         }
     }
     
-    //This function has no usage but i wanna keep it
+    //MARK: Remove cards from hand, useful when we reset game
     private func remove(card: Card, from hand: Hand) {
         withAnimation {
             // Put the card back in the deck
@@ -147,6 +184,31 @@ struct ContentView: View {
             hand.cards.remove(at: index)
             gameState.deck.cards.append(card)
         }
+    }
+    
+    private func resetGame(){
+        //Remove computer cards
+        for card in gameState.hands[0].cards {
+            remove(card: card, from: gameState.hands[0])
+        }
+        
+        //Remove user cards
+        for card in gameState.hands[1].cards {
+            remove(card: card, from: gameState.hands[1])
+        }
+        
+        //Reset points
+        computerDeal = false;
+        userDeal = false;
+        hasWinningPerson = false;
+        winningPerson = "";
+        userPoint = "0";
+        computerPoint = "0";
+        bothSideDeal = false;
+        
+        
+        //Then we will shuffle the master card deck again
+        gameState.deck.cards.shuffle();
     }
     
     //MARK: Function used for user
@@ -233,7 +295,8 @@ struct ContentView: View {
         print("computer deal state: \(computerDeal)")
         print("both side deal status: \(bothSideDeal)")
         print("user card point: \(userPoint)")
-        print("user computer point: \(computerPoint)")
+        print("computer card point: \(computerPoint)")
+        print("final winner: \(winningPerson)")
         print("-------------------------------------")
     }
     
@@ -245,17 +308,63 @@ struct ContentView: View {
     }
     
     //MARK: Find out who is the winner
+    //MARK: pointcase -> Xi Ban = 100, Xi Dach = 90, Ngu Linh = 80, Quach = -100, numbers value = similar value
     public func evaluateWinner(){
         
-        //Get the point for the user and the computer, these are using for comparison, we will convert string case to number too
-//        var userPointNumber: Int = 0;
-//        var computerPointNumber: Int = 0;
+        //Convert user point and computer point into number
+        func convertStringToNumber(inputPoint: String) -> Int{
+            var returningPoint: Int = 0;
+            //Case numeric
+            if(checkNumeric(input: inputPoint)){
+                returningPoint = Int(inputPoint) ?? 0;
+            }
+            // and Case not numeric
+            else if(!checkNumeric(input: inputPoint)){
+                switch inputPoint {
+                case "Xi Ban":
+                    returningPoint = 100;
+                    
+                case "Xi Dach":
+                    returningPoint = 90;
+                    
+                case "Ngu Linh":
+                    returningPoint = 80;
+                    
+                case "Quach":
+                    returningPoint = -100;
+                    
+                default:
+                    returningPoint = 0;
+                }
+            }
+            return returningPoint;
+        }
         
-        //3 cases, with string - string
+        let userFinalResult = convertStringToNumber(inputPoint: userPoint);
+        let computerFinalResult = convertStringToNumber(inputPoint: computerPoint);
         
-        // string - number
+        if(userFinalResult == computerFinalResult){
+            //DRAW
+            winningPerson = "NO ONE"
+        }
         
-        // number - number
+        else if(userFinalResult > computerFinalResult){
+            //USER WIN
+            winningPerson = "USER"
+            userWinningCount += 1;
+        }
+        
+        else if(computerFinalResult > userFinalResult){
+            //COMPUTER WIN
+            winningPerson = "COMPUTER"
+            computerWinningCount += 1;
+        }
+        //Display the announcement
+        announceWinnerToDeviceScreen();
+    }
+    
+    public func announceWinnerToDeviceScreen(){
+        hasWinningPerson = true;
         
     }
     
@@ -271,10 +380,8 @@ struct ContentView: View {
         return true;
     }
    
-    
-    
-    
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

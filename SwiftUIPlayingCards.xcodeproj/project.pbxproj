@@ -19,6 +19,7 @@
 		D307D75928B1E464000BA1E9 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75828B1E464000BA1E9 /* LeaderboardView.swift */; };
 		D307D75B28B1E489000BA1E9 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */; };
 		D368BDF928B093EE00CFC454 /* sandBoxArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368BDF828B093EE00CFC454 /* sandBoxArea.swift */; };
+		D3D900EE28B3A07D00B3E9D4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D900ED28B3A07D00B3E9D4 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		D307D75828B1E464000BA1E9 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		D368BDF828B093EE00CFC454 /* sandBoxArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sandBoxArea.swift; sourceTree = "<group>"; };
+		D3D900ED28B3A07D00B3E9D4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		0C1124D227BC4C6A008AAC13 /* SwiftUIPlayingCards */ = {
 			isa = PBXGroup;
 			children = (
+				D3D900EC28B3A06D00B3E9D4 /* Model */,
 				0C1124E127BC4CC0008AAC13 /* Views */,
 				0C1124D327BC4C6A008AAC13 /* SwiftUIPlayingCardsApp.swift */,
 				0C1124E527BC4CC0008AAC13 /* GameState.swift */,
@@ -98,6 +101,14 @@
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
+		};
+		D3D900EC28B3A06D00B3E9D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D3D900ED28B3A07D00B3E9D4 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -179,6 +190,7 @@
 				0C1124E627BC4CC0008AAC13 /* HandView.swift in Sources */,
 				D368BDF928B093EE00CFC454 /* sandBoxArea.swift in Sources */,
 				0C1124EB27BD220F008AAC13 /* DeckView.swift in Sources */,
+				D3D900EE28B3A07D00B3E9D4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

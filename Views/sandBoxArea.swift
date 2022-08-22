@@ -227,8 +227,9 @@ struct sandBoxArea: View {
         
 }
 
+
 struct sandBoxArea_Previews: PreviewProvider {
     static var previews: some View {
-        sandBoxArea()
+        sandBoxArea();
     }
 }
