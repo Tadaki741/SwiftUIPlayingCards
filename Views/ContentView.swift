@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var gameState = GameState()
+    @StateObject private var gameState = GameState()
     private let roundRect = RoundedRectangle(cornerRadius: 20)
     @Namespace private var animation
     
@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var computerDeal: Bool = false;
     @State private var userDeal:Bool = false;
     @State private var hasWinningPerson: Bool = false;
+    @State private var alreadyAddedWinCount: Bool = false;
     @State private var winningPerson: String = "";
 
     
@@ -46,6 +47,11 @@ struct ContentView: View {
             ZStack{
                 VStack {
                     Spacer();
+                    HStack{
+                        Text("computer win: \(computerWinningCount)");
+                        Text("user win: \(userWinningCount)");
+                    }
+                    Spacer();
                     //MARK: Master card deck on the top
                     DeckView(deck: gameState.deck,namespace: animation).blur(radius: 20, opaque: true)
                     Spacer();
@@ -59,7 +65,7 @@ struct ContentView: View {
                             HStack {
                                 if(hand.type == "computer"){
                                     //Use ternary operator to identify when the match will end, then we will unveil the computer cards
-                                    HandView(hand: hand,namespace: animation).blur(radius: bothSideDeal ? 0 : 20, opaque: true);
+                                    HandView(hand: hand,namespace: animation).blur(radius: alreadyAddedWinCount ? 0 : 20, opaque: true);
                                 }
                                 else if(hand.type == "user") {
                                     HandView(hand: hand,namespace: animation)
@@ -102,7 +108,7 @@ struct ContentView: View {
                                 
                             }
                             else if(hand.type == "computer"){
-                                Text("Computer point: \(computerPoint)").blur(radius: bothSideDeal ? 0 : 20, opaque: true).font(.system(size: 30, weight: .heavy, design: .default))
+                                Text("Computer point: \(computerPoint)").blur(radius: alreadyAddedWinCount ? 0 : 20, opaque: true).font(.system(size: 30, weight: .heavy, design: .default))
                             }
                             
                         }
@@ -119,7 +125,7 @@ struct ContentView: View {
                     Spacer();
                     
                     //Display winner
-                    if(bothSideDeal && hasWinningPerson){
+                    if(hasWinningPerson){
                         withAnimation {
                             Button("See result") {}
                             .sheet(isPresented: $hasWinningPerson, content: {
@@ -134,6 +140,7 @@ struct ContentView: View {
                                             
                                         }
                                         
+                                        //User when quitting, their data will be saved into the CoreData
                                         Button("Quit match"){
                                             //Save the data
                                             
@@ -148,7 +155,6 @@ struct ContentView: View {
                                 
                             })
                         }
-                        
                     }
                     Spacer();
                     
@@ -186,6 +192,7 @@ struct ContentView: View {
         }
     }
     
+    //MARK: Reset game function
     private func resetGame(){
         //Remove computer cards
         for card in gameState.hands[0].cards {
@@ -201,6 +208,7 @@ struct ContentView: View {
         computerDeal = false;
         userDeal = false;
         hasWinningPerson = false;
+        alreadyAddedWinCount = false;
         winningPerson = "";
         userPoint = "0";
         computerPoint = "0";
@@ -294,9 +302,12 @@ struct ContentView: View {
         print("user deal state: \(userDeal)")
         print("computer deal state: \(computerDeal)")
         print("both side deal status: \(bothSideDeal)")
+        print("user win count: \(userWinningCount)")
         print("user card point: \(userPoint)")
         print("computer card point: \(computerPoint)")
+        print("computer win count: \(computerWinningCount)")
         print("final winner: \(winningPerson)")
+        print("has winning person:\(hasWinningPerson)")
         print("-------------------------------------")
     }
     
@@ -346,27 +357,28 @@ struct ContentView: View {
         if(userFinalResult == computerFinalResult){
             //DRAW
             winningPerson = "NO ONE"
+            alreadyAddedWinCount = true;
         }
         
-        else if(userFinalResult > computerFinalResult){
+        else if((userFinalResult > computerFinalResult) && (!alreadyAddedWinCount) ){
             //USER WIN
             winningPerson = "USER"
             userWinningCount += 1;
+            alreadyAddedWinCount = true;
         }
         
-        else if(computerFinalResult > userFinalResult){
+        else if( (computerFinalResult > userFinalResult) && (!alreadyAddedWinCount)){
             //COMPUTER WIN
             winningPerson = "COMPUTER"
             computerWinningCount += 1;
+            alreadyAddedWinCount = true;
         }
-        //Display the announcement
-        announceWinnerToDeviceScreen();
-    }
-    
-    public func announceWinnerToDeviceScreen(){
+        
+        //We already have the winner
         hasWinningPerson = true;
         
     }
+    
     
     private func checkNumeric(input: String) -> Bool {
         for (_, char) in input.enumerated() {

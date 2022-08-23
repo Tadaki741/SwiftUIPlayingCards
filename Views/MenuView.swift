@@ -7,9 +7,50 @@
 
 import SwiftUI
 
+//Menu view will have the navigation view that leads to others
 struct MenuView: View {
+    
+    @State var playerSelectPlayGame: Bool = false;
+    @State var playerSelectHowToPlay: Bool = false;
+    @State var playerSelectLeaderboard: Bool = false;
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if playerSelectPlayGame {
+            askPlayerNameView();
+        }
+        
+        else if playerSelectHowToPlay{
+            HowToPlayView();
+        }
+        
+        else if playerSelectLeaderboard {
+            LeaderboardView();
+        }
+        
+        
+        VStack{
+            
+            Button("PLAY GAME"){
+                
+                playerSelectPlayGame.toggle();
+                
+            }
+            
+            Button("LEADERBOARD"){
+                
+                playerSelectLeaderboard.toggle();
+                
+            }
+            
+            Button("HOW TO PLAY ?"){
+                playerSelectHowToPlay.toggle();
+            }
+            
+            
+        }
+        
     }
 }
 

@@ -211,7 +211,7 @@ class Hand: ObservableObject, Identifiable {
 // A representation of the current state of the game,
 // including which cards each player has and the deck
 // of cards that can be picked up from
-class GameState {
+class GameState: ObservableObject {
     
     //This is the game master deck to contain all the cards
     private(set) var deck = Hand()
