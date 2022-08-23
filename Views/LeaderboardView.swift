@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LeaderboardView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("LEADER BOARD VIEW HERE")
+        
+        //TODO: LOAD THE LIST OF USERS AND THEIR HIGHSCORE
     }
 }
 

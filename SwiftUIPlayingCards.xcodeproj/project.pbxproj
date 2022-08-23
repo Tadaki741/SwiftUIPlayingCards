@@ -18,7 +18,6 @@
 		D307D75728B1E439000BA1E9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75628B1E439000BA1E9 /* MenuView.swift */; };
 		D307D75928B1E464000BA1E9 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75828B1E464000BA1E9 /* LeaderboardView.swift */; };
 		D307D75B28B1E489000BA1E9 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */; };
-		D368BDF928B093EE00CFC454 /* sandBoxArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368BDF828B093EE00CFC454 /* sandBoxArea.swift */; };
 		D3D900EE28B3A07D00B3E9D4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D900ED28B3A07D00B3E9D4 /* User.swift */; };
 		D3EF0EB728B4EEB7009B32C8 /* askPlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */; };
 /* End PBXBuildFile section */
@@ -36,7 +35,6 @@
 		D307D75628B1E439000BA1E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		D307D75828B1E464000BA1E9 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
-		D368BDF828B093EE00CFC454 /* sandBoxArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sandBoxArea.swift; sourceTree = "<group>"; };
 		D3D900ED28B3A07D00B3E9D4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = askPlayerNameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,7 +94,6 @@
 				0C1124E227BC4CC0008AAC13 /* HandView.swift */,
 				0C1124E327BC4CC0008AAC13 /* CardView.swift */,
 				0C1124E427BC4CC0008AAC13 /* ContentView.swift */,
-				D368BDF828B093EE00CFC454 /* sandBoxArea.swift */,
 				D307D75628B1E439000BA1E9 /* MenuView.swift */,
 				D307D75828B1E464000BA1E9 /* LeaderboardView.swift */,
 				D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */,
@@ -192,7 +189,6 @@
 				0C1124E827BC4CC0008AAC13 /* ContentView.swift in Sources */,
 				D307D75B28B1E489000BA1E9 /* HowToPlayView.swift in Sources */,
 				0C1124E627BC4CC0008AAC13 /* HandView.swift in Sources */,
-				D368BDF928B093EE00CFC454 /* sandBoxArea.swift in Sources */,
 				0C1124EB27BD220F008AAC13 /* DeckView.swift in Sources */,
 				D3D900EE28B3A07D00B3E9D4 /* User.swift in Sources */,
 			);

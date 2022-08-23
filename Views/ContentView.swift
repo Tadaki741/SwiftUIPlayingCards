@@ -13,6 +13,9 @@ struct ContentView: View {
     private let roundRect = RoundedRectangle(cornerRadius: 20)
     @Namespace private var animation
     
+    //Get the user information from the askPlayerView view
+    @Binding var userNameFromAskPlayerNameView: String;
+    
     
     //Match decision side
     //User deal and computer deal will end the match
@@ -39,6 +42,7 @@ struct ContentView: View {
                 Color.yellow
                 Color.purple
             }.onAppear(){
+                print("incoming user: \(userNameFromAskPlayerNameView)")
                 //Calculate user's point and computer point before hand
                 userPoint = gameState.hands[1].calculateTotalPointOfCards();
                 computerPoint = gameState.hands[0].calculateTotalPointOfCards();
@@ -76,10 +80,14 @@ struct ContentView: View {
                             
                             //Options for the user
                             if(hand.type == "user"){
-                                Text("User point: \(userPoint)").font(.system(size: 30, weight: .heavy, design: .default))
+                                Text("goodluck \(userNameFromAskPlayerNameView)")
+                                Text("\(userNameFromAskPlayerNameView) point: \(userPoint)").font(.system(size: 30, weight: .heavy, design: .default))
                                 Button("Pick more"){
-                                    //Action from user
-                                    UserPickDecisionPickMore();
+                                    //Action from user, can only pick up to 5 cards only AND can still picking if both side haven't dealt yet
+                                    if(gameState.hands[1].cards.count < 5 && (bothSideDeal == false)){
+                                        UserPickDecisionPickMore();
+                                    }
+                                    
                                     
                                     //Then, its turn for computer to move
                                     AIPickDecision();
@@ -116,12 +124,6 @@ struct ContentView: View {
                         Spacer();
                         
                     }
-                    
-        
-                    Button("Quit"){
-                        print("User quit match !")
-                        userQuitMatch = true;
-                    }
                     Spacer();
                     
                     //Display winner
@@ -138,15 +140,20 @@ struct ContentView: View {
                                             //Reset game
                                             resetGame();
                                             
-                                        }
+                                        }.frame(width: 100, height: 50)
+                                            .background(Color.blue)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10);
                                         
                                         //User when quitting, their data will be saved into the CoreData
-                                        Button("Quit match"){
-                                            //Save the data
+                                        Button("Save match"){
+                                            //Reset game
+                                            resetGame();
                                             
-                                            //Relocate user to homescreen
-                                            
-                                        }
+                                        }.frame(width: 100, height: 50)
+                                            .background(Color.blue)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10);
                                     }
                                 }
                                 
@@ -232,6 +239,11 @@ struct ContentView: View {
             bothSideDeal = true;
             evaluateWinner();
         }
+    }
+    
+    //MARK: Function for saving data
+    private func saveMatchData(){
+        
     }
     
     //MARK: Function used for computer, Computer moves including, pick more, stop picking , deal
@@ -395,8 +407,8 @@ struct ContentView: View {
 }
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

@@ -191,10 +191,14 @@ class Hand: ObservableObject, Identifiable {
             
             //If we do not have an Ace, we just need to loop through all cards and calculate sum
             else {
+                //Calculate the sum
                 for card in cards {
                     bestCardPointPossible += valueDictionary[card.number] ?? 0;
                 }
-                if(bestCardPointPossible > 21){
+                if(self.cards.count == 5 && bestCardPointPossible <= 21){
+                    return "Ngu Linh";
+                }
+                else if(bestCardPointPossible > 21){
                     return "Quach";
                 }
             }

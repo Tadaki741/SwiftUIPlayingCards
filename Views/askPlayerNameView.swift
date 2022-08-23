@@ -14,10 +14,30 @@ struct askPlayerNameView: View {
     @State private var showError = false
         
     var body: some View {
-        HStack {
-            Text("User name")
-            TextField("type here", text: $userName)
-        }.padding()
+    
+        VStack{
+            
+            HStack{
+                Text("Username: ");
+                TextField("Enter your username",text: $userName);
+            }
+            
+            
+            NavigationLink(destination: ContentView(userNameFromAskPlayerNameView: $userName),label: {
+                if(!userName.isEmpty){
+                    Text("Let's Play").bold()
+                        .frame(width: 280, height: 50)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10);
+                }
+                
+            })
+            
+            
+            
+        }
+        
     }
 }
 
