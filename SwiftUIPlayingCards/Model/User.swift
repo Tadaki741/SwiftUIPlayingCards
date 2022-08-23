@@ -12,9 +12,9 @@ import Foundation
 struct User{
     
     private var id = UUID()
-    private var username: String
-    private var point: Int
-    
+    private var name: String
+    private var point: String
+
     
     
 }
