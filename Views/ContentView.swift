@@ -12,6 +12,7 @@ struct ContentView: View {
     //MARK: CONTROLLING GAME
     @StateObject private var gameState = GameState()
     @ObservedObject public var coreDM: CoreDataManager;
+    @ObservedObject public var soundManager: SoundManager;
     @Namespace private var animation
     //Get the user information from the askPlayerView view
     @Binding var userNameFromAskPlayerNameView: String;
@@ -56,6 +57,7 @@ struct ContentView: View {
                 //Calculate user's point and computer point before hand
                 userPoint = gameState.hands[1].calculateTotalPointOfCards();
                 computerPoint = gameState.hands[0].calculateTotalPointOfCards();
+                soundManager.stopBackgroundMusic();
             }
             
             ZStack{

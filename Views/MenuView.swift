@@ -10,13 +10,17 @@ import SwiftUI
 //Menu view will have the navigation view that leads to others
 struct MenuView: View {
     
-    //Dark mode light mode
+    //Dark mode light mode implemented
     
+    //turn on/off music based on user choice
+    @AppStorage("enableMusic") private var enableMusic = false;
     
     //Core data passed from the SwiftUIPlayingCardsApp
     @ObservedObject public var coreDM: CoreDataManager;
+    @ObservedObject public var soundManager: SoundManager;
     
     var body: some View {
+        
         
 
             NavigationView{
@@ -24,8 +28,25 @@ struct MenuView: View {
                 
                 VStack{
                     
+                    Text("Vietnamese BlackJack")
+                        .font(Font.system(size: 46, weight: .bold))
+                        .multilineTextAlignment(.center)
+                        .overlay {
+                            LinearGradient(
+                                colors: [.red, .blue, .green, .yellow],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                            .mask(
+                                Text("Vietnamese BlackJack")
+                                    .font(Font.system(size: 46, weight: .bold))
+                                    .multilineTextAlignment(.center)
+                            )
+                        }
+                    
+                    
                     //MARK: PLAY THE GAME
-                    NavigationLink(destination: askPlayerNameView(coreDM: coreDM),label:{
+                    NavigationLink(destination: askPlayerNameView(coreDM: coreDM, soundManager: soundManager),label:{
                         Text("Play Game").bold()
                             .frame(width: 280, height: 50)
                             .background(Color.blue)
@@ -43,7 +64,7 @@ struct MenuView: View {
                     })
                     
                     //MARK: SETTINGS
-                    NavigationLink(destination: SettingsView(),label:{
+                    NavigationLink(destination: SettingsView(soundManager: soundManager),label:{
                         Text("Settings").bold()
                             .frame(width: 280, height: 50)
                             .background(Color.blue)
@@ -60,7 +81,10 @@ struct MenuView: View {
                             .cornerRadius(10);
                     })
                 }
+            }.onAppear{
+                soundManager.playBackgroundMusic();
             }
+            
     }
 }
 

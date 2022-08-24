@@ -14,11 +14,13 @@ struct SwiftUIPlayingCardsApp: App {
     
     //MARK: State object to store data
     @StateObject private var coreDM = CoreDataManager();
+    //MARK: State object to play background music
+    @StateObject private var soundManagerObject = SoundManager();
     
     
     var body: some Scene {
         WindowGroup {
-            MenuView(coreDM: coreDM)
+            MenuView(coreDM: coreDM, soundManager: soundManagerObject)
                 .preferredColorScheme(isDarkMode ? .dark : .light).accentColor(.primary)
                 .environment(\.managedObjectContext,coreDM.persistentContainer.viewContext);
         }

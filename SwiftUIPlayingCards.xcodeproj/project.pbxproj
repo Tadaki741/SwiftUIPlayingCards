@@ -23,6 +23,7 @@
 		D3335AE628B6402D00A5C720 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3335AE528B6402D00A5C720 /* SoundManager.swift */; };
 		D3335AE928B643C700A5C720 /* blackJackDefeatSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3335AE828B643C700A5C720 /* blackJackDefeatSound.mp3 */; };
 		D3335AEB28B643DF00A5C720 /* blackJackWinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3335AEA28B643DF00A5C720 /* blackJackWinSound.mp3 */; };
+		D3335AED28B6508100A5C720 /* CODEXBackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3335AEC28B6508100A5C720 /* CODEXBackgroundMusic.mp3 */; };
 		D3EF0EB728B4EEB7009B32C8 /* askPlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */; };
 		D3EF0EC228B511D9009B32C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -34,7 +35,7 @@
 		0C1124DA27BC4C6C008AAC13 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0C1124E227BC4CC0008AAC13 /* HandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandView.swift; sourceTree = "<group>"; };
 		0C1124E327BC4CC0008AAC13 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		0C1124E427BC4CC0008AAC13 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0C1124E427BC4CC0008AAC13 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 3; };
 		0C1124EA27BD220F008AAC13 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 		D307D75628B1E439000BA1E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		D307D75828B1E464000BA1E9 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		D3335AE528B6402D00A5C720 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		D3335AE828B643C700A5C720 /* blackJackDefeatSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blackJackDefeatSound.mp3; sourceTree = "<group>"; };
 		D3335AEA28B643DF00A5C720 /* blackJackWinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blackJackWinSound.mp3; sourceTree = "<group>"; };
+		D3335AEC28B6508100A5C720 /* CODEXBackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CODEXBackgroundMusic.mp3; sourceTree = "<group>"; };
 		D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = askPlayerNameView.swift; sourceTree = "<group>"; };
 		D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 			children = (
 				D3335AE828B643C700A5C720 /* blackJackDefeatSound.mp3 */,
 				D3335AEA28B643DF00A5C720 /* blackJackWinSound.mp3 */,
+				D3335AEC28B6508100A5C720 /* CODEXBackgroundMusic.mp3 */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				D3335AEB28B643DF00A5C720 /* blackJackWinSound.mp3 in Resources */,
 				D3335AE928B643C700A5C720 /* blackJackDefeatSound.mp3 in Resources */,
 				0C1124DB27BC4C6C008AAC13 /* Preview Assets.xcassets in Resources */,
+				D3335AED28B6508100A5C720 /* CODEXBackgroundMusic.mp3 in Resources */,
 				0C1124D827BC4C6C008AAC13 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
