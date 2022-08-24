@@ -140,7 +140,20 @@ struct ContentView: View {
                             .sheet(isPresented: $hasWinningPerson, content: {
                                 
                                 VStack{
-                                    Text("\(winningPerson) WIN !")
+                                    Text("\(winningPerson) WIN !").onAppear {
+                                        //play the sound
+                                        if(winningPerson == "USER"){
+                                            //Play sound user win
+                                            playSound(sound: "blackJackWinSound", type: "mp3")
+                                        }
+                                        else if(winningPerson == "COMPUTER"){
+                                            //Play sound computer win
+                                            playSound(sound: "blackJackDefeatSound", type: "mp3")
+                                        }
+                                    }
+                                    
+                                    
+                                    
                                     HStack{
                                         
                                         Button("Play again ?"){

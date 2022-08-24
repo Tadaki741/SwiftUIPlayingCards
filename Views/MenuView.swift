@@ -18,24 +18,7 @@ struct MenuView: View {
     
     var body: some View {
         
-        VStack{
-            Spacer();
-            //Display the welcome text
-            Text("Vietnamese Black Jack")
-                                .font(Font.system(size: 46, weight: .bold))
-                                .multilineTextAlignment(.center)
-                                .overlay {
-                                    LinearGradient(
-                                        colors: [.red, .blue, .green, .yellow],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                    .mask(
-                                        Text("Vietnamese Black Jack")
-                                            .font(Font.system(size: 46, weight: .bold))
-                                            .multilineTextAlignment(.center)
-                                    )
-                                }
+
             NavigationView{
                 
                 
@@ -78,9 +61,6 @@ struct MenuView: View {
                     })
                 }
             }
-        }
-        
-        
     }
 }
 

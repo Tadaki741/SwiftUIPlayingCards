@@ -20,6 +20,9 @@
 		D3335ADD28B614F800A5C720 /* CardGameCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3335ADB28B614F800A5C720 /* CardGameCoreData.xcdatamodeld */; };
 		D3335AE228B62F7000A5C720 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3335AE128B62F7000A5C720 /* GameState.swift */; };
 		D3335AE428B632DF00A5C720 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3335AE328B632DF00A5C720 /* SettingsView.swift */; };
+		D3335AE628B6402D00A5C720 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3335AE528B6402D00A5C720 /* SoundManager.swift */; };
+		D3335AE928B643C700A5C720 /* blackJackDefeatSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3335AE828B643C700A5C720 /* blackJackDefeatSound.mp3 */; };
+		D3335AEB28B643DF00A5C720 /* blackJackWinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3335AEA28B643DF00A5C720 /* blackJackWinSound.mp3 */; };
 		D3EF0EB728B4EEB7009B32C8 /* askPlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */; };
 		D3EF0EC228B511D9009B32C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +42,9 @@
 		D3335ADC28B614F800A5C720 /* CardGameCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardGameCoreData.xcdatamodel; sourceTree = "<group>"; };
 		D3335AE128B62F7000A5C720 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		D3335AE328B632DF00A5C720 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D3335AE528B6402D00A5C720 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		D3335AE828B643C700A5C720 /* blackJackDefeatSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blackJackDefeatSound.mp3; sourceTree = "<group>"; };
+		D3335AEA28B643DF00A5C720 /* blackJackWinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blackJackWinSound.mp3; sourceTree = "<group>"; };
 		D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = askPlayerNameView.swift; sourceTree = "<group>"; };
 		D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +79,7 @@
 		0C1124D227BC4C6A008AAC13 /* SwiftUIPlayingCards */ = {
 			isa = PBXGroup;
 			children = (
+				D3335AE728B6439100A5C720 /* Sound */,
 				D3EF0EC028B511C4009B32C8 /* Manager */,
 				D3D900EC28B3A06D00B3E9D4 /* Model */,
 				0C1124E127BC4CC0008AAC13 /* Views */,
@@ -108,6 +115,15 @@
 			path = Views;
 			sourceTree = SOURCE_ROOT;
 		};
+		D3335AE728B6439100A5C720 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				D3335AE828B643C700A5C720 /* blackJackDefeatSound.mp3 */,
+				D3335AEA28B643DF00A5C720 /* blackJackWinSound.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		D3D900EC28B3A06D00B3E9D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */,
+				D3335AE528B6402D00A5C720 /* SoundManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -182,6 +199,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3335AEB28B643DF00A5C720 /* blackJackWinSound.mp3 in Resources */,
+				D3335AE928B643C700A5C720 /* blackJackDefeatSound.mp3 in Resources */,
 				0C1124DB27BC4C6C008AAC13 /* Preview Assets.xcassets in Resources */,
 				0C1124D827BC4C6C008AAC13 /* Assets.xcassets in Resources */,
 			);
@@ -199,6 +218,7 @@
 				D3EF0EB728B4EEB7009B32C8 /* askPlayerNameView.swift in Sources */,
 				0C1124E727BC4CC0008AAC13 /* CardView.swift in Sources */,
 				D307D75928B1E464000BA1E9 /* LeaderboardView.swift in Sources */,
+				D3335AE628B6402D00A5C720 /* SoundManager.swift in Sources */,
 				0C1124E827BC4CC0008AAC13 /* ContentView.swift in Sources */,
 				D3EF0EC228B511D9009B32C8 /* CoreDataManager.swift in Sources */,
 				D3335ADD28B614F800A5C720 /* CardGameCoreData.xcdatamodeld in Sources */,
