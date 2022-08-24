@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject private var gameState = GameState()
+    @ObservedObject public var coreDM: CoreDataManager;
     private let roundRect = RoundedRectangle(cornerRadius: 20)
     @Namespace private var animation
     
@@ -80,7 +81,7 @@ struct ContentView: View {
                             
                             //Options for the user
                             if(hand.type == "user"){
-                                Text("goodluck \(userNameFromAskPlayerNameView)")
+                                //View point of the user
                                 Text("\(userNameFromAskPlayerNameView) point: \(userPoint)").font(.system(size: 30, weight: .heavy, design: .default))
                                 Button("Pick more"){
                                     //Action from user, can only pick up to 5 cards only AND can still picking if both side haven't dealt yet
@@ -147,8 +148,9 @@ struct ContentView: View {
                                         
                                         //User when quitting, their data will be saved into the CoreData
                                         Button("Save match"){
-                                            //Reset game
-                                            resetGame();
+                                            
+                                            savePlayer();
+                                            
                                             
                                         }.frame(width: 100, height: 50)
                                             .background(Color.blue)
@@ -241,12 +243,16 @@ struct ContentView: View {
         }
     }
     
-    //MARK: Function for saving data
-    private func saveMatchData(){
-        
+    //MARK: Save player
+    private func savePlayer(){
+        //Save data to core data model, player can view this data in the leaderboard
+        //Convert the winning count to integer
+        let userWinCountToString = String(userWinningCount);
+        coreDM.savePlayer(name: userNameFromAskPlayerNameView, score: userWinCountToString);
+        print("Data saved");
     }
     
-    //MARK: Function used for computer, Computer moves including, pick more, stop picking , deal
+    //MARK: Function used by Computer
     public func AIPickDecision(){
         
         //----------------------AI MOVES ----------------

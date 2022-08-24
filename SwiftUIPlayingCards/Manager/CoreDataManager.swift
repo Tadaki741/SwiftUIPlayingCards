@@ -8,13 +8,13 @@
 import Foundation
 import CoreData
 
-class CoreDataManager{
+class CoreDataManager: ObservableObject{
     
     let persistentContainer: NSPersistentContainer
     
     //Constructor
     init(){
-        persistentContainer = NSPersistentContainer(name: "CardGameDataModel")
+        persistentContainer = NSPersistentContainer(name: "CardGameCoreData")
         persistentContainer.loadPersistentStores{(description,error) in
             if let error = error{
                 fatalError("Core Data Store failed\(error.localizedDescription)")
@@ -24,7 +24,33 @@ class CoreDataManager{
     
     
     //MARK: Function to save player score
-    func savePlayerPoint(playerName: String, playerScore: String){
+    func savePlayer(name: String, score: String){
+        let player = Player(context: persistentContainer.viewContext);
+        let scoreString = String(score);
+        //Convert the string to number
+        player.name = name;
+        player.score = scoreString;
+        
+        
+        
+        do{
+            try persistentContainer.viewContext.save();
+        }
+        catch{
+            print("Failed to save player !");
+        }
+    }
+    
+    func getAllPlayers() -> [Player]{
+        //Fetch data
+        let fetchRequest: NSFetchRequest<Player> = Player.fetchRequest()
+        
+        do{
+            return try persistentContainer.viewContext.fetch(fetchRequest);
+        }
+        catch{
+            return [];
+        }
         
     }
     

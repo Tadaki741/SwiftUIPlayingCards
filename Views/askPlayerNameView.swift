@@ -9,6 +9,7 @@ import SwiftUI
 
 struct askPlayerNameView: View {
     
+    @ObservedObject public var coreDM: CoreDataManager;
     @State private var userName: String = ""
     @State private var password: String = ""
     @State private var showError = false
@@ -23,7 +24,7 @@ struct askPlayerNameView: View {
             }
             
             
-            NavigationLink(destination: ContentView(userNameFromAskPlayerNameView: $userName),label: {
+            NavigationLink(destination: ContentView(coreDM: coreDM, userNameFromAskPlayerNameView: $userName),label: {
                 if(!userName.isEmpty){
                     Text("Let's Play").bold()
                         .frame(width: 280, height: 50)

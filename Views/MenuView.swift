@@ -10,6 +10,8 @@ import SwiftUI
 //Menu view will have the navigation view that leads to others
 struct MenuView: View {
     
+    @ObservedObject public var coreDM: CoreDataManager;
+    
     var body: some View {
         
         NavigationView{
@@ -18,7 +20,7 @@ struct MenuView: View {
             VStack{
                 
                 //MARK: PLAY THE GAME
-                NavigationLink(destination: askPlayerNameView(),label:{
+                NavigationLink(destination: askPlayerNameView(coreDM: coreDM),label:{
                     Text("Play Game").bold()
                         .frame(width: 280, height: 50)
                         .background(Color.blue)
@@ -27,7 +29,7 @@ struct MenuView: View {
                 })
                 
                 //MARK: LEADERBOARD
-                NavigationLink(destination: LeaderboardView(),label:{
+                NavigationLink(destination: LeaderboardView(coreDM: coreDM),label:{
                     Text("LEADERBOARD").bold()
                         .frame(width: 280, height: 50)
                         .background(Color.blue)
@@ -51,8 +53,3 @@ struct MenuView: View {
     }
 }
 
-struct MenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuView()
-    }
-}

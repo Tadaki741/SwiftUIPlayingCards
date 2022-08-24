@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct SwiftUIPlayingCardsApp: App {
+    
+    @StateObject private var coreDM = CoreDataManager();
+    
+    
     var body: some Scene {
         WindowGroup {
-            MenuView();
+            MenuView(coreDM: coreDM).environment(\.managedObjectContext,coreDM.persistentContainer.viewContext);
         }
     }
 }
