@@ -19,7 +19,7 @@ struct MenuView: View {
     var body: some View {
         
         //background image
-        
+        Spacer();
         //Display the welcome text
         Text("Vietnamese Black Jack")
                             .font(Font.system(size: 46, weight: .bold))
