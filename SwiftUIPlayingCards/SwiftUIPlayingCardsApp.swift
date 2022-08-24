@@ -10,13 +10,17 @@ import SwiftUI
 @main
 struct SwiftUIPlayingCardsApp: App {
     
+    @AppStorage("isDarkMode") private var isDarkMode = false;
+    
     //MARK: State object to store data
     @StateObject private var coreDM = CoreDataManager();
     
     
     var body: some Scene {
         WindowGroup {
-            MenuView(coreDM: coreDM).environment(\.managedObjectContext,coreDM.persistentContainer.viewContext);
+            MenuView(coreDM: coreDM)
+                .preferredColorScheme(isDarkMode ? .dark : .light).accentColor(.primary)
+                .environment(\.managedObjectContext,coreDM.persistentContainer.viewContext);
         }
     }
 }

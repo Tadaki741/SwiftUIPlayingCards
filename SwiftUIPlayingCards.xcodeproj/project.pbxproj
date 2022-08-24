@@ -19,6 +19,7 @@
 		D307D75B28B1E489000BA1E9 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */; };
 		D3335ADD28B614F800A5C720 /* CardGameCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3335ADB28B614F800A5C720 /* CardGameCoreData.xcdatamodeld */; };
 		D3335AE228B62F7000A5C720 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3335AE128B62F7000A5C720 /* GameState.swift */; };
+		D3335AE428B632DF00A5C720 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3335AE328B632DF00A5C720 /* SettingsView.swift */; };
 		D3EF0EB728B4EEB7009B32C8 /* askPlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */; };
 		D3EF0EC228B511D9009B32C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		D3335ADC28B614F800A5C720 /* CardGameCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardGameCoreData.xcdatamodel; sourceTree = "<group>"; };
 		D3335AE128B62F7000A5C720 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		D3335AE328B632DF00A5C720 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = askPlayerNameView.swift; sourceTree = "<group>"; };
 		D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +103,7 @@
 				D307D75828B1E464000BA1E9 /* LeaderboardView.swift */,
 				D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */,
 				D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */,
+				D3335AE328B632DF00A5C720 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -203,6 +206,7 @@
 				D3335AE228B62F7000A5C720 /* GameState.swift in Sources */,
 				0C1124E627BC4CC0008AAC13 /* HandView.swift in Sources */,
 				0C1124EB27BD220F008AAC13 /* DeckView.swift in Sources */,
+				D3335AE428B632DF00A5C720 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
