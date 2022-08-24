@@ -23,18 +23,43 @@ struct LeaderboardView: View {
             }
             
             //Display the data as list
-            List(playerList, id: \.self ){ player in
-                HStack{
-                    Text(player.name ?? "")
-                    Text(player.score ?? "")
-                }
+            List{
+                
+                
+                ForEach(playerList, id: \.self){ player in
+                    HStack{
+                        Text(player.name ?? "");
+                        Text(player.score ?? "");
+                    }
+                }.onDelete(perform: { indexSet in
+                    indexSet.forEach { index in
+                        let player = playerList[index];
+                        //Delete using core data manager
+                        coreDM.deletePlayer(player: player);
+                        
+                        //Refresh UI again
+                        populatePlayerData();
+                    }
+                })
+                
+                
+                
             }
             
         }.onAppear(perform: {
-            playerList = coreDM.getAllPlayers();
+            
+            populatePlayerData();
             
         })
         
     }
+    
+    private func populatePlayerData(){
+        playerList = coreDM.getAllPlayers();
+    }
+    
+    
+    
+    
 }
 

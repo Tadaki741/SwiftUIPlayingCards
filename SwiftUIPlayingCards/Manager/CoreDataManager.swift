@@ -8,11 +8,12 @@
 import Foundation
 import CoreData
 
+//MARK: CoreDataManager
 class CoreDataManager: ObservableObject{
     
     let persistentContainer: NSPersistentContainer
     
-    //Constructor
+    //MARK: Constructor
     init(){
         persistentContainer = NSPersistentContainer(name: "CardGameCoreData")
         persistentContainer.loadPersistentStores{(description,error) in
@@ -41,6 +42,7 @@ class CoreDataManager: ObservableObject{
         }
     }
     
+    //MARK: Return all the players to display on the leaderboard
     func getAllPlayers() -> [Player]{
         //Fetch data
         let fetchRequest: NSFetchRequest<Player> = Player.fetchRequest()
@@ -52,6 +54,21 @@ class CoreDataManager: ObservableObject{
             return [];
         }
         
+    }
+    
+    //MARK: delete a particular player
+    func deletePlayer(player: Player){
+        persistentContainer.viewContext.delete(player);
+        do{
+            
+            try persistentContainer.viewContext.save();
+            
+        }
+        
+        catch{
+            persistentContainer.viewContext.rollback();
+            print("Something wrong when deleting !");
+        }
     }
     
     

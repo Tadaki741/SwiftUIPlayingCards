@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct SwiftUIPlayingCardsApp: App {
     
+    //MARK: State object to store data
     @StateObject private var coreDM = CoreDataManager();
     
     

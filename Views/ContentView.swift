@@ -13,7 +13,6 @@ struct ContentView: View {
     @ObservedObject public var coreDM: CoreDataManager;
     private let roundRect = RoundedRectangle(cornerRadius: 20)
     @Namespace private var animation
-    
     //Get the user information from the askPlayerView view
     @Binding var userNameFromAskPlayerNameView: String;
     
@@ -188,7 +187,7 @@ struct ContentView: View {
         }
     }
     
-    //MARK: Remove cards from hand, useful when we reset game
+    //MARK: Remove cards
     private func remove(card: Card, from hand: Hand) {
         withAnimation {
             // Put the card back in the deck
@@ -228,7 +227,8 @@ struct ContentView: View {
         gameState.deck.cards.shuffle();
     }
     
-    //MARK: Function used for user
+    //MARK: PLAYER
+    //MARK: PLAYER DEAL
     private func userDealCard(){
         userDeal = true;
         //If computer is not deal yet, we will let it continue to play
@@ -252,7 +252,7 @@ struct ContentView: View {
         print("Data saved");
     }
     
-    //MARK: Function used by Computer
+    //MARK: COMPUTER
     public func AIPickDecision(){
         
         //----------------------AI MOVES ----------------
@@ -398,6 +398,7 @@ struct ContentView: View {
     }
     
     
+    //MARK: Additional function to support calculations
     private func checkNumeric(input: String) -> Bool {
         for (_, char) in input.enumerated() {
             if(char.isNumber){
@@ -411,10 +412,3 @@ struct ContentView: View {
     }
    
 }
-
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
