@@ -13,12 +13,12 @@
 		0C1124E627BC4CC0008AAC13 /* HandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1124E227BC4CC0008AAC13 /* HandView.swift */; };
 		0C1124E727BC4CC0008AAC13 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1124E327BC4CC0008AAC13 /* CardView.swift */; };
 		0C1124E827BC4CC0008AAC13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1124E427BC4CC0008AAC13 /* ContentView.swift */; };
-		0C1124E927BC4CC0008AAC13 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1124E527BC4CC0008AAC13 /* GameState.swift */; };
 		0C1124EB27BD220F008AAC13 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1124EA27BD220F008AAC13 /* DeckView.swift */; };
 		D307D75728B1E439000BA1E9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75628B1E439000BA1E9 /* MenuView.swift */; };
 		D307D75928B1E464000BA1E9 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75828B1E464000BA1E9 /* LeaderboardView.swift */; };
 		D307D75B28B1E489000BA1E9 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */; };
 		D3335ADD28B614F800A5C720 /* CardGameCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3335ADB28B614F800A5C720 /* CardGameCoreData.xcdatamodeld */; };
+		D3335AE228B62F7000A5C720 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3335AE128B62F7000A5C720 /* GameState.swift */; };
 		D3EF0EB728B4EEB7009B32C8 /* askPlayerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */; };
 		D3EF0EC228B511D9009B32C8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -31,12 +31,12 @@
 		0C1124E227BC4CC0008AAC13 /* HandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandView.swift; sourceTree = "<group>"; };
 		0C1124E327BC4CC0008AAC13 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0C1124E427BC4CC0008AAC13 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		0C1124E527BC4CC0008AAC13 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = SOURCE_ROOT; };
 		0C1124EA27BD220F008AAC13 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 		D307D75628B1E439000BA1E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		D307D75828B1E464000BA1E9 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		D307D75A28B1E489000BA1E9 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		D3335ADC28B614F800A5C720 /* CardGameCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardGameCoreData.xcdatamodel; sourceTree = "<group>"; };
+		D3335AE128B62F7000A5C720 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = askPlayerNameView.swift; sourceTree = "<group>"; };
 		D3EF0EC128B511D9009B32C8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,7 +75,7 @@
 				D3D900EC28B3A06D00B3E9D4 /* Model */,
 				0C1124E127BC4CC0008AAC13 /* Views */,
 				0C1124D327BC4C6A008AAC13 /* SwiftUIPlayingCardsApp.swift */,
-				0C1124E527BC4CC0008AAC13 /* GameState.swift */,
+				D3335AE128B62F7000A5C720 /* GameState.swift */,
 				0C1124D727BC4C6C008AAC13 /* Assets.xcassets */,
 				0C1124D927BC4C6C008AAC13 /* Preview Content */,
 			);
@@ -195,12 +195,12 @@
 				D307D75728B1E439000BA1E9 /* MenuView.swift in Sources */,
 				D3EF0EB728B4EEB7009B32C8 /* askPlayerNameView.swift in Sources */,
 				0C1124E727BC4CC0008AAC13 /* CardView.swift in Sources */,
-				0C1124E927BC4CC0008AAC13 /* GameState.swift in Sources */,
 				D307D75928B1E464000BA1E9 /* LeaderboardView.swift in Sources */,
 				0C1124E827BC4CC0008AAC13 /* ContentView.swift in Sources */,
 				D3EF0EC228B511D9009B32C8 /* CoreDataManager.swift in Sources */,
 				D3335ADD28B614F800A5C720 /* CardGameCoreData.xcdatamodeld in Sources */,
 				D307D75B28B1E489000BA1E9 /* HowToPlayView.swift in Sources */,
+				D3335AE228B62F7000A5C720 /* GameState.swift in Sources */,
 				0C1124E627BC4CC0008AAC13 /* HandView.swift in Sources */,
 				0C1124EB27BD220F008AAC13 /* DeckView.swift in Sources */,
 			);

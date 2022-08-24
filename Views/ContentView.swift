@@ -9,30 +9,40 @@ import SwiftUI
 
 struct ContentView: View {
     
+    //MARK: CONTROLLING GAME
     @StateObject private var gameState = GameState()
     @ObservedObject public var coreDM: CoreDataManager;
-    private let roundRect = RoundedRectangle(cornerRadius: 20)
     @Namespace private var animation
     //Get the user information from the askPlayerView view
     @Binding var userNameFromAskPlayerNameView: String;
     
     
-    //Match decision side
-    //User deal and computer deal will end the match
-    @State private var computerDeal: Bool = false;
-    @State private var userDeal:Bool = false;
+    //MARK: Match information
     @State private var hasWinningPerson: Bool = false;
     @State private var alreadyAddedWinCount: Bool = false;
     @State private var winningPerson: String = "";
+    
+    //MARK: USER INFO
+    @State private var userDeal:Bool = false;
+    
+    
+    
+    //MARK: COMPUTER INFO
+    @State private var computerDeal: Bool = false;
+    
+    
+    
+    
 
     
-    @State private var userQuitMatch: Bool = false;
     @State private var userPoint: String = "0";
     @State private var userWinningCount = 0;
     @State private var computerWinningCount = 0;
     @State private var computerPoint: String = "0";
     @State private var computerMoney: Int = 0;
     @State private var bothSideDeal: Bool = false;
+    
+    private let roundRect = RoundedRectangle(cornerRadius: 20)
     
     var body: some View {
         
@@ -92,8 +102,6 @@ struct ContentView: View {
                                     //Then, its turn for computer to move
                                     AIPickDecision();
                                     
-                                    summarizeGameState();
-                                    
                                     
                                 }.frame(width: 90, height: 40)
                                     .background(roundRect.fill(Color.orange))
@@ -104,7 +112,6 @@ struct ContentView: View {
                                 
                                 Button("Deal"){
                                     userDealCard();
-                                    summarizeGameState();
                                     
                                     
                                 }.frame(width: 90, height: 40)
@@ -157,13 +164,10 @@ struct ContentView: View {
                                             .cornerRadius(10);
                                     }
                                 }
-                                
-                                
-                    
-                                
                             })
                         }
                     }
+                    
                     Spacer();
                     
                 }
@@ -175,6 +179,10 @@ struct ContentView: View {
     }
     
     //MARK: Game main functions
+    
+    
+    
+    
     //MARK: Add cards
     private func addCard(to hand: Hand) {
         withAnimation {
@@ -228,7 +236,20 @@ struct ContentView: View {
     }
     
     //MARK: PLAYER
-    //MARK: PLAYER DEAL
+    
+    
+    
+    
+    
+    //MARK: play pick more card
+    public func UserPickDecisionPickMore(){
+        //User will pick
+        addCard(to: gameState.hands[1])
+        //Update the user's point
+        userPoint = gameState.hands[1].calculateTotalPointOfCards()
+    }
+    
+    //MARK: player deal
     private func userDealCard(){
         userDeal = true;
         //If computer is not deal yet, we will let it continue to play
@@ -243,7 +264,7 @@ struct ContentView: View {
         }
     }
     
-    //MARK: Save player
+    //MARK: player save data
     private func savePlayer(){
         //Save data to core data model, player can view this data in the leaderboard
         //Convert the winning count to integer
@@ -256,6 +277,7 @@ struct ContentView: View {
     public func AIPickDecision(){
         
         //----------------------AI MOVES ----------------
+        //MARK: AI pick more
         func pickMoreCard(){
             //Computer will pick the next card
             addCard(to: gameState.hands[0])
@@ -263,10 +285,12 @@ struct ContentView: View {
             computerPoint = gameState.hands[0].calculateTotalPointOfCards()
         }
         
+        //MARK: AI did not pick
         func stopPicking(){
             return;
         }
         
+        //MARK: AI wants to deal
         func deal () {
             computerDeal = true;
             if(userDeal && computerDeal){
@@ -276,8 +300,6 @@ struct ContentView: View {
                 return;
             }
         }
-        //----------------------AI MOVES--------------------
-        
         
         //MARK: AI LOGIC
         //Here the AI will check for the value of its card, we just make a simple rule, the AI will aim to score between 15 and 21
@@ -316,25 +338,7 @@ struct ContentView: View {
         
     }
     
-    public func summarizeGameState(){
-        print("user deal state: \(userDeal)")
-        print("computer deal state: \(computerDeal)")
-        print("both side deal status: \(bothSideDeal)")
-        print("user win count: \(userWinningCount)")
-        print("user card point: \(userPoint)")
-        print("computer card point: \(computerPoint)")
-        print("computer win count: \(computerWinningCount)")
-        print("final winner: \(winningPerson)")
-        print("has winning person:\(hasWinningPerson)")
-        print("-------------------------------------")
-    }
     
-    public func UserPickDecisionPickMore(){
-        //User will pick
-        addCard(to: gameState.hands[1])
-        //Update the user's point
-        userPoint = gameState.hands[1].calculateTotalPointOfCards()
-    }
     
     //MARK: Find out who is the winner
     //MARK: pointcase -> Xi Ban = 100, Xi Dach = 90, Ngu Linh = 80, Quach = -100, numbers value = similar value
