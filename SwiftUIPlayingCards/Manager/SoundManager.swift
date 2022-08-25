@@ -23,6 +23,8 @@ class SoundManager: ObservableObject{
             
             player = try AVAudioPlayer(contentsOf: url);
             player?.play();
+            //We are playing background music, so it should loop infinitely
+            player?.numberOfLoops = -1;
             
         }
         
