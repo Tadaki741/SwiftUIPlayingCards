@@ -16,21 +16,22 @@ struct SettingsView: View {
     
     var body: some View {
         
-        
-        
-        
-        
         VStack{
             Spacer();
+            //MARK: Settings text
             Text("Game settings").fontWeight(.bold);
             Spacer();
+            
+            
+            //MARK: Toggle button
             Picker("Mode",selection: $isDarkMode){
                             Text("Light mode ☀️").tag(false);
                              Text("Dark mode 🌙").tag(true)
             }.pickerStyle(SegmentedPickerStyle()).padding();
             
             Spacer();
-            //Button to turn on/off music
+            
+            //MARK: Button to turn on/off music
             Button(soundON ? "MUSIC ON" : "MUSIC OFF"){
                 //If tap on the sound ON
                 if(soundON){

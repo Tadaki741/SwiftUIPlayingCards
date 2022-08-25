@@ -18,8 +18,7 @@ struct LeaderboardView: View {
         //TODO: LOAD THE LIST OF USERS AND THEIR HIGHSCORE
         VStack{
             HStack{
-                Text("Username");
-                Text("Score");
+                Text("Username win count -- Computer win count");
             }
             
             //Display the data as list
@@ -30,6 +29,9 @@ struct LeaderboardView: View {
                     HStack{
                         Text(player.name ?? "");
                         Text(player.score ?? "");
+                        Text("--");
+                        Text(player.computerScore ?? "");
+                        Text("Computer");
                     }
                 }.onDelete(perform: { indexSet in
                     indexSet.forEach { index in

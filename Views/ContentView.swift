@@ -258,6 +258,8 @@ struct ContentView: View {
     
     //MARK: play pick more card
     public func UserPickDecisionPickMore(){
+        //Sound effect for user
+        playSound(sound: "pageTurnSoundEffect", type: "mp3")
         //User will pick
         addCard(to: gameState.hands[1])
         //Update the user's point
@@ -266,6 +268,10 @@ struct ContentView: View {
     
     //MARK: player deal
     private func userDealCard(){
+        
+        //Sound effect for user
+        playSound(sound: "cardDealSoundEffect", type: "mp3")
+        
         userDeal = true;
         //If computer is not deal yet, we will let it continue to play
         if(computerDeal != true && userDeal == true){
@@ -279,12 +285,13 @@ struct ContentView: View {
         }
     }
     
-    //MARK: player save data
+    //MARK: Player save data
     private func savePlayer(){
         //Save data to core data model, player can view this data in the leaderboard
         //Convert the winning count to integer
         let userWinCountToString = String(userWinningCount);
-        coreDM.savePlayer(name: userNameFromAskPlayerNameView, score: userWinCountToString);
+        let computerWinCountToString = String(computerWinningCount);
+        coreDM.savePlayer(name: userNameFromAskPlayerNameView, score: userWinCountToString, computerScore: computerWinCountToString);
         print("Data saved");
     }
     

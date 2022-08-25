@@ -25,11 +25,13 @@ class CoreDataManager: ObservableObject{
     
     
     //MARK: Function to save player score
-    func savePlayer(name: String, score: String){
+    func savePlayer(name: String, score: String, computerScore: String){
         let player = Player(context: persistentContainer.viewContext);
         let scoreString = String(score);
+        let computerString = String(computerScore);
         //Convert the string to number
         player.name = name;
+        player.computerScore = computerString;
         player.score = scoreString;
         
         

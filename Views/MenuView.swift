@@ -10,10 +10,6 @@ import SwiftUI
 //Menu view will have the navigation view that leads to others
 struct MenuView: View {
     
-    //Dark mode light mode implemented
-    
-    //turn on/off music based on user choice
-    @AppStorage("enableMusic") private var enableMusic = false;
     
     //Core data passed from the SwiftUIPlayingCardsApp
     @ObservedObject public var coreDM: CoreDataManager;
@@ -82,6 +78,7 @@ struct MenuView: View {
                     })
                 }
             }.onAppear{
+                //MARK: Play music when user go to menu
                 soundManager.playBackgroundMusic();
             }
             
