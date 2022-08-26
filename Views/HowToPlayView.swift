@@ -33,6 +33,7 @@ struct HowToPlayView: View {
                     Text("One Ace and one (king or queen or jack), also called Xi Dach, 2nd highest")
                     Text("If you have 5 cards and their value smaller than 21, it is called Ngu Linh, 3rd highest");
                     Text("The rest are cards that based on numbers value")
+                    Text("If cards exceed 21 points, it is called Quach, means lose")
                     
                 }
                
