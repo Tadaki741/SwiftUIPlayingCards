@@ -16,6 +16,7 @@ struct ContentView: View {
     @Namespace private var animation
     //Get the user information from the askPlayerView view
     @Binding var userNameFromAskPlayerNameView: String;
+    @State var saveButtonPress: Bool = false;
     
     
     //MARK: Match information
@@ -142,6 +143,7 @@ struct ContentView: View {
                             .sheet(isPresented: $hasWinningPerson, content: {
                                 
                                 VStack{
+                                    
                                     Text("\(winningPerson) WIN !").onAppear {
                                         //play the sound
                                         if(winningPerson == "USER"){
@@ -168,13 +170,20 @@ struct ContentView: View {
                                             .cornerRadius(10);
                                         
                                         //User when quitting, their data will be saved into the CoreData
-                                        Button("Save match"){
+                                        Button(saveButtonPress ? "Saving..." : "Save match"){
                                             
                                             savePlayer();
                                             
+                                            //Notify the user
+                                            saveButtonPress = true;
+                                            
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                                saveButtonPress = false;
+                                            }
+                                            
                                             
                                         }.frame(width: 100, height: 50)
-                                            .background(Color.blue)
+                                            .background(saveButtonPress ? Color.yellow : Color.blue)
                                             .foregroundColor(.white)
                                             .cornerRadius(10);
                                     }
