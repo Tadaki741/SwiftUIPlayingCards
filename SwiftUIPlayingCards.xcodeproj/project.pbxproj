@@ -49,6 +49,7 @@
 		D3335AE828B643C700A5C720 /* blackJackDefeatSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blackJackDefeatSound.mp3; sourceTree = "<group>"; };
 		D3335AEA28B643DF00A5C720 /* blackJackWinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blackJackWinSound.mp3; sourceTree = "<group>"; };
 		D3335AEC28B6508100A5C720 /* CODEXBackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CODEXBackgroundMusic.mp3; sourceTree = "<group>"; };
+		D34163E128BB0D19009D5238 /* SystemDocumentationAsg2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SystemDocumentationAsg2.pdf; sourceTree = "<group>"; };
 		D36EA51628B79415007EE968 /* pageTurnSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pageTurnSoundEffect.mp3; sourceTree = "<group>"; };
 		D36EA51828B7941C007EE968 /* cardDealSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardDealSoundEffect.mp3; sourceTree = "<group>"; };
 		D3EF0EB628B4EEB7009B32C8 /* askPlayerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = askPlayerNameView.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		0C1124D227BC4C6A008AAC13 /* SwiftUIPlayingCards */ = {
 			isa = PBXGroup;
 			children = (
+				D34163DF28BB0755009D5238 /* SystemDocumentation */,
 				D3335AE728B6439100A5C720 /* Sound */,
 				D3EF0EC028B511C4009B32C8 /* Manager */,
 				D3D900EC28B3A06D00B3E9D4 /* Model */,
@@ -131,6 +133,14 @@
 				D36EA51828B7941C007EE968 /* cardDealSoundEffect.mp3 */,
 			);
 			path = Sound;
+			sourceTree = "<group>";
+		};
+		D34163DF28BB0755009D5238 /* SystemDocumentation */ = {
+			isa = PBXGroup;
+			children = (
+				D34163E128BB0D19009D5238 /* SystemDocumentationAsg2.pdf */,
+			);
+			path = SystemDocumentation;
 			sourceTree = "<group>";
 		};
 		D3D900EC28B3A06D00B3E9D4 /* Model */ = {
